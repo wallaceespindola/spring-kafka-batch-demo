@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "Spring Kafka Batch Demo",
+    "description": "Collection for testing Producer and Query endpoints of the Spring Kafka Batch Demo application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Produce: Two Messages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/produce",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "produce"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Produce: Many (n)",
+      "variable": [
+        {
+          "key": "n",
+          "value": "5"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/produce/{{n}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "produce",
+            "{{n}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Query: Messages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/messages",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "messages"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Query: Joined Records",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/joined",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "joined"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Actuator: Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/actuator/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "actuator",
+            "health"
+          ]
+        }
+      }
+    }
+  ]
+}

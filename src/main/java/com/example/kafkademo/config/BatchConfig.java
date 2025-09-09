@@ -13,10 +13,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.batch.core.launch.JobLauncher;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
+@RequiredArgsConstructor
 public class BatchConfig {
 
     @Bean
@@ -38,11 +39,8 @@ public class BatchConfig {
                 .build();
     }
 
-    @Autowired
-    private JobLauncher jobLauncher;
-
-    @Autowired
-    private Job joinMessagesJob;
+    private final JobLauncher jobLauncher;
+    private final Job joinMessagesJob;
 
     // Run every 30 seconds
     @Scheduled(fixedRate = 30_000)
@@ -53,3 +51,4 @@ public class BatchConfig {
         jobLauncher.run(joinMessagesJob, params);
     }
 }
+

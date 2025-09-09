@@ -4,25 +4,20 @@ import com.example.kafkademo.domain.JoinedRecordEntity;
 import com.example.kafkademo.domain.MessageEntity;
 import com.example.kafkademo.repo.JoinedRecordRepository;
 import com.example.kafkademo.repo.MessageRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class JoinService {
-    private static final Logger log = LoggerFactory.getLogger(JoinService.class);
-
     private final MessageRepository messageRepository;
     private final JoinedRecordRepository joinedRecordRepository;
-
-    public JoinService(MessageRepository messageRepository, JoinedRecordRepository joinedRecordRepository) {
-        this.messageRepository = messageRepository;
-        this.joinedRecordRepository = joinedRecordRepository;
-    }
 
     @Transactional
     public void processReadyPairs() {
@@ -52,3 +47,4 @@ public class JoinService {
         }
     }
 }
+

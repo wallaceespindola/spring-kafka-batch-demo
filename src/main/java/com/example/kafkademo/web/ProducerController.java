@@ -1,14 +1,14 @@
 package com.example.kafkademo.web;
 
 import com.example.kafkademo.kafka.MessagePayload;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,19 +18,15 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
+@Slf4j
 public class ProducerController {
-
-    private static final Logger log = LoggerFactory.getLogger(ProducerController.class);
     private static final SecureRandom random = new SecureRandom();
 
     private final KafkaTemplate<String, MessagePayload> kafkaTemplate;
 
     @Value("${app.kafka.topic}")
     private String topic;
-
-    public ProducerController(KafkaTemplate<String, MessagePayload> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
 
     private BigDecimal randomAmount() {
         double value = 1.0 + (9.0 * random.nextDouble()); // 1.00..10.00
